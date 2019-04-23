@@ -1,0 +1,20 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    username: test
+    password: test
+    url: jdbc:mysql://localhost:3306/base?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:com/example/base/*Dao.xml
+  type-aliases-package: com.example.base.entity
+
+#showSql
+logging:
+  level:
+    com:
+      example:
+        mapper : debug
