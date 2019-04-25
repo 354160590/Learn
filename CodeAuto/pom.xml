@@ -61,7 +61,24 @@
             <version>1.0</version>
         </dependency>
         <!-- 代码生成器依赖 -->
-
+        <!--添加swagger依赖 start-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <!--添加swagger依赖 end-->
+        <!--添加热部署依赖 start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <!--添加热部署依赖 end-->
     </dependencies>
 
     <build>

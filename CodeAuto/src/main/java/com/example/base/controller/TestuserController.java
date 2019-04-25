@@ -3,10 +3,12 @@ package com.example.base.controller;
 import com.example.base.entity.Testuser;
 import com.example.base.service.TestuserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Project demo
@@ -17,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
  * Version 1.0
  **/
 @RestController
-@RequestMapping("/testuserController")
+@RequestMapping("/testuserController/*")
+@Api(value = "TestuserController测试swagger注解的控制器")
 public class TestuserController {
     @Autowired
 TestuserService testuserService;
@@ -29,7 +32,9 @@ TestuserService testuserService;
      * @Param [id]
      * @return int
      **/
-    @RequestMapping("/deleteByPrimaryKey")
+    @ApiOperation("根据主键删除Testuser实体")
+    @DeleteMapping("deleteByPrimaryKey")
+    @ApiImplicitParam(paramType="query",name = "id", value = "主键ID", required = true, dataType = "Integer")
     public int deleteByPrimaryKey(Integer id){
         return this.testuserService.deleteByPrimaryKey(id);
     }
@@ -40,8 +45,9 @@ TestuserService testuserService;
      * @Param [record]
      * @return int
      **/
-    @RequestMapping("/insert")
-    public int insert(Testuser record){
+    @ApiOperation("插入Testuser实体")
+    @PutMapping("insert")
+    public int insert(@RequestBody @ApiParam(name="record",value="Testuser实体")Testuser record){
         return this.testuserService.insert(record);
     }
     /**
@@ -51,8 +57,9 @@ TestuserService testuserService;
      * @Param [record]
      * @return int
      **/
-    @RequestMapping("/insertSelective")
-    public int insertSelective(Testuser record){
+    @ApiOperation("非空插入Testuser实体")
+    @PutMapping("insertSelective")
+    public int insertSelective(@RequestBody @ApiParam(name="record",value="Testuser实体")Testuser record){
         return this.testuserService.insertSelective(record);
     }
     /**
@@ -62,7 +69,9 @@ TestuserService testuserService;
      * @Param [id]
      * @return com.example.base.entity.Testuser
      **/
-    @RequestMapping("/selectByPrimaryKey")
+    @ApiOperation("根据主键查询Testuser实体")
+    @GetMapping("selectByPrimaryKey")
+    @ApiImplicitParam(paramType="query",name = "id", value = "主键ID", required = true, dataType = "Integer")
     public Testuser selectByPrimaryKey(Integer id){
         return this.testuserService.selectByPrimaryKey(id);
     }
@@ -73,8 +82,9 @@ TestuserService testuserService;
      * @Param [record]
      * @return int
      **/
-    @RequestMapping("/updateByPrimaryKeySelective")
-    public int updateByPrimaryKeySelective(Testuser record){
+    @ApiOperation("修改非空Testuser实体")
+    @PutMapping("updateByPrimaryKeySelective")
+    public int updateByPrimaryKeySelective(@RequestBody @ApiParam(name="record",value="Testuser实体")Testuser record){
         return this.testuserService.updateByPrimaryKeySelective(record);
     }
     /**
@@ -84,8 +94,9 @@ TestuserService testuserService;
      * @Param [record]
      * @return int
      **/
-    @RequestMapping("/updateByPrimaryKey")
-    public int updateByPrimaryKey(Testuser record){
+    @ApiOperation("修改Testuser实体")
+    @PutMapping("updateByPrimaryKey")
+    public int updateByPrimaryKey(@RequestBody @ApiParam(name="record",value="Testuser实体")Testuser record){
         return this.testuserService.updateByPrimaryKey(record);
     }
 }

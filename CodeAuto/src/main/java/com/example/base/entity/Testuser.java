@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -12,6 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author 
  */
 @Table(name="base_testuser")
+@ApiModel(value="Testuser")
 public class Testuser implements Serializable {
     @Id
     @GeneratedValue
