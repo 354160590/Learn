@@ -3,10 +3,12 @@ package ${basePackage}.controller;
 import ${basePackage}.entity.${upperClassName};
 import ${basePackage}.service.${upperClassName}Service;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Project demo
@@ -17,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
  * Version 1.0
  **/
 @RestController
-@RequestMapping("/${lowerClassName}Controller")
+@RequestMapping("/${lowerClassName}Controller/*")
+@Api(value = "${upperClassName}Controller")
 public class ${upperClassName}Controller {
     @Autowired
 ${upperClassName}Service ${lowerClassName}Service;
@@ -29,7 +32,9 @@ ${upperClassName}Service ${lowerClassName}Service;
      * @Param [id]
      * @return int
      **/
-    @RequestMapping("/deleteByPrimaryKey")
+	@ApiOperation("根据主键删除${upperClassName}实体")
+    @DeleteMapping("deleteByPrimaryKey")
+    @ApiImplicitParam(paramType="query",name = "id", value = "主键ID", required = true, dataType = "Integer")
     public int deleteByPrimaryKey(Integer id){
         return this.${lowerClassName}Service.deleteByPrimaryKey(id);
     }
@@ -40,8 +45,9 @@ ${upperClassName}Service ${lowerClassName}Service;
      * @Param [record]
      * @return int
      **/
-    @RequestMapping("/insert")
-    public int insert(${upperClassName} record){
+    @ApiOperation("插入${upperClassName}实体")
+    @PutMapping("insert")
+    public int insert(@RequestBody @ApiParam(name="record",value="${upperClassName}实体") ${upperClassName} record){
         return this.${lowerClassName}Service.insert(record);
     }
     /**
@@ -51,8 +57,9 @@ ${upperClassName}Service ${lowerClassName}Service;
      * @Param [record]
      * @return int
      **/
-    @RequestMapping("/insertSelective")
-    public int insertSelective(${upperClassName} record){
+	@ApiOperation("非空插入${upperClassName}实体")
+    @PutMapping("insertSelective")
+    public int insertSelective(@RequestBody @ApiParam(name="record",value="${upperClassName}实体")${upperClassName} record){
         return this.${lowerClassName}Service.insertSelective(record);
     }
     /**
@@ -62,7 +69,9 @@ ${upperClassName}Service ${lowerClassName}Service;
      * @Param [id]
      * @return com.example.base.entity.${upperClassName}
      **/
-    @RequestMapping("/selectByPrimaryKey")
+	@ApiOperation("根据主键查询${upperClassName}实体")
+    @GetMapping("selectByPrimaryKey")
+    @ApiImplicitParam(paramType="query",name = "id", value = "主键ID", required = true, dataType = "Integer")
     public ${upperClassName} selectByPrimaryKey(Integer id){
         return this.${lowerClassName}Service.selectByPrimaryKey(id);
     }
@@ -73,8 +82,9 @@ ${upperClassName}Service ${lowerClassName}Service;
      * @Param [record]
      * @return int
      **/
-    @RequestMapping("/updateByPrimaryKeySelective")
-    public int updateByPrimaryKeySelective(${upperClassName} record){
+	@ApiOperation("修改非空${upperClassName}实体")
+    @PutMapping("updateByPrimaryKeySelective")
+    public int updateByPrimaryKeySelective(@RequestBody @ApiParam(name="record",value="${upperClassName}实体")${upperClassName} record){
         return this.${lowerClassName}Service.updateByPrimaryKeySelective(record);
     }
     /**
@@ -84,8 +94,9 @@ ${upperClassName}Service ${lowerClassName}Service;
      * @Param [record]
      * @return int
      **/
-    @RequestMapping("/updateByPrimaryKey")
-    public int updateByPrimaryKey(${upperClassName} record){
+	@ApiOperation("修改${upperClassName}实体")
+    @PutMapping("updateByPrimaryKey")
+    public int updateByPrimaryKey(@RequestBody @ApiParam(name="record",value="${upperClassName}实体")${upperClassName} record){
         return this.${lowerClassName}Service.updateByPrimaryKey(record);
     }
 }

@@ -37,6 +37,7 @@ TestuserService testuserService;
     @ApiImplicitParam(paramType="query",name = "id", value = "主键ID", required = true, dataType = "Integer")
     public int deleteByPrimaryKey(Integer id){
         return this.testuserService.deleteByPrimaryKey(id);
+
     }
     /**
      * @Author Mr.LYF
@@ -99,4 +100,5 @@ TestuserService testuserService;
     public int updateByPrimaryKey(@RequestBody @ApiParam(name="record",value="Testuser实体")Testuser record){
         return this.testuserService.updateByPrimaryKey(record);
     }
+
 }

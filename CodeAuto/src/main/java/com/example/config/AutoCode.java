@@ -18,7 +18,7 @@ public class AutoCode {
     
     public static void main(String[] args) {
 //        genCode("输入表名","输入自定义Model名称");
-        genCode("base_testuser","base");
+        genCode("base_config","base");
     }
     /**
      * 基础路径
